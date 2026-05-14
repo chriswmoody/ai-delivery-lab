@@ -129,7 +129,7 @@ export default function StandupAgent() {
         system: STAGE_A_SYSTEM,
         messages: [{ role: 'user', content: buildStageAPrompt({ sprintBoard, contextDump }) }],
         maxTokens: 1500,
-        model: 'claude-sonnet-4-5',
+        model: 'claude-sonnet-4-5-20251022',
       })
       setStageA(aResult)
 
@@ -139,7 +139,7 @@ export default function StandupAgent() {
         system: STAGE_B_SYSTEM,
         messages: [{ role: 'user', content: buildStageBPrompt(aResult) }],
         maxTokens: 1500,
-        model: 'claude-sonnet-4-5',
+        model: 'claude-sonnet-4-5-20251022',
       })
       setStageB(bResult)
 
@@ -149,7 +149,7 @@ export default function StandupAgent() {
         system: STAGE_C_SYSTEM,
         messages: [{ role: 'user', content: buildStageCPrompt(bResult) }],
         maxTokens: 1000,
-        model: 'claude-sonnet-4-5',
+        model: 'claude-sonnet-4-5-20251022',
       })
       setStageC(cResult)
 

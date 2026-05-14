@@ -119,7 +119,7 @@ export default function ValueAlignmentAuditor() {
         system: VALUE_ALIGNMENT_SYSTEM,
         messages: [{ role: 'user', content: buildValueAlignmentPrompt({ priorities, backlog }) }],
         maxTokens: 2500,
-        model: 'claude-sonnet-4-5',
+        model: 'claude-sonnet-4-5-20251022',
       })
       setOutput(result)
     } catch (err) {

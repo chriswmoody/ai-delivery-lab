@@ -282,7 +282,7 @@ export default function StatusReportGenerator() {
         system,
         messages: [{ role: 'user', content: buildStatusReportPrompt({ statusDump, audience, projectName, timeHorizon, reportType }) }],
         maxTokens: 3000,
-        model: 'claude-sonnet-4-5',
+        model: 'claude-sonnet-4-5-20251022',
       })
       setOutput(result)
     } catch (err) {
@@ -398,19 +398,4 @@ export default function StatusReportGenerator() {
             </div>
 
             <div>
-              <h2 style={{ fontSize: 16, fontWeight: 500, marginBottom: 20 }}>Your report</h2>
-              <StatusReportOutputPanel
-                output={output}
-                isLoading={isLoading}
-                error={error}
-                reportType={reportType}
-                projectName={projectName}
-                audience={audience}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-    </PageLayout>
-  )
-}
+              <h2 style={{ fontSize: 16, fontWeight: 500, mar

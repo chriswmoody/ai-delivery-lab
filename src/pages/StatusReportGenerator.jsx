@@ -282,7 +282,7 @@ export default function StatusReportGenerator() {
         system,
         messages: [{ role: 'user', content: buildStatusReportPrompt({ statusDump, audience, projectName, timeHorizon, reportType }) }],
         maxTokens: 3000,
-        model: 'claude-sonnet-4-5-20251022',
+        model: 'claude-sonnet-4-5',
       })
       setOutput(result)
     } catch (err) {

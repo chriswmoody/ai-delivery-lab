@@ -104,7 +104,7 @@ export default function SprintRiskScanner() {
         system: SPRINT_RISK_SYSTEM,
         messages: [{ role: 'user', content: prompt }],
         maxTokens: 2000,
-        model: 'claude-sonnet-4-5-20251022',
+        model: 'claude-sonnet-4-5',
       })
       setOutput(result)
     } catch (err) {

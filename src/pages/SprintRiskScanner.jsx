@@ -103,7 +103,7 @@ export default function SprintRiskScanner() {
       const result = await callClaude({
         system: SPRINT_RISK_SYSTEM,
         messages: [{ role: 'user', content: prompt }],
-        maxTokens: 2000,
+        maxTokens: 1500,
         model: 'claude-sonnet-4-5',
       })
       setOutput(result)

@@ -118,7 +118,7 @@ export default function ValueAlignmentAuditor() {
       const result = await callClaude({
         system: VALUE_ALIGNMENT_SYSTEM,
         messages: [{ role: 'user', content: buildValueAlignmentPrompt({ priorities, backlog }) }],
-        maxTokens: 2500,
+        maxTokens: 1500,
         model: 'claude-sonnet-4-5',
       })
       setOutput(result)

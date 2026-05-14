@@ -281,7 +281,7 @@ export default function StatusReportGenerator() {
       const result = await callClaude({
         system,
         messages: [{ role: 'user', content: buildStatusReportPrompt({ statusDump, audience, projectName, timeHorizon, reportType }) }],
-        maxTokens: 3000,
+        maxTokens: 1500,
         model: 'claude-sonnet-4-5',
       })
       setOutput(result)

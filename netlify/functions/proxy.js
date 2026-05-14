@@ -77,7 +77,7 @@ export default async function handler(req, context) {
 
   try {
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 25000)
+    const timeout = setTimeout(() => controller.abort(), 55000)
 
     const anthropicResponse = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -122,4 +122,5 @@ export default async function handler(req, context) {
 
 export const config = {
   path: '/api/claude',
+  maxDuration: 60,
 }

@@ -414,9 +414,3 @@ export default function StatusReportGenerator() {
     </PageLayout>
   )
 }
-
-        </div>
-      </section>
-    </PageLayout>
-  )
-}

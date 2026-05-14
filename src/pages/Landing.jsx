@@ -103,7 +103,7 @@ export default function Landing() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--color-cream)' }}>
 
-      {/* ── Nav ─────────────────────────────────────────────────── */}
+      {/* Nav */}
       <nav style={{
         height: 'var(--nav-h)',
         background: '#ffffff',
@@ -126,7 +126,7 @@ export default function Landing() {
               className="btn-secondary"
               style={{ height: 32, fontSize: 12, padding: '0 12px' }}
             >
-              chriswmoody.com →
+              chriswmoody.com
             </a>
             <a
               href="https://www.linkedin.com/in/chriswmoody"
@@ -135,13 +135,13 @@ export default function Landing() {
               className="btn-secondary"
               style={{ height: 32, fontSize: 12, padding: '0 12px' }}
             >
-              LinkedIn →
+              LinkedIn
             </a>
           </div>
         </div>
       </nav>
 
-      {/* ── Hero ────────────────────────────────────────────────── */}
+      {/* Hero */}
       <section className="sect" style={{ background: '#ffffff', borderBottom: '1px solid var(--color-border)', paddingBottom: 48 }}>
         <div className="container">
           <div style={{ maxWidth: 720 }}>
@@ -158,7 +158,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── Function Cards ──────────────────────────────────────── */}
+      {/* Function Cards */}
       <section className="sect" style={{ paddingTop: 48 }}>
         <div className="container">
           <div style={{ marginBottom: 40 }}>
@@ -167,7 +167,6 @@ export default function Landing() {
               Several tools are live now with more in progress. New functions ship regularly.
             </p>
           </div>
-
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
@@ -180,7 +179,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── About ───────────────────────────────────────────────── */}
+      {/* About */}
       <section className="sect" style={{ background: '#ffffff', borderTop: '1px solid var(--color-border)' }}>
         <div className="container">
           <div style={{ maxWidth: 640 }}>
@@ -199,7 +198,7 @@ export default function Landing() {
                 rel="noopener noreferrer"
                 className="btn-secondary"
               >
-                chriswmoody.com →
+                chriswmoody.com
               </a>
               <a
                 href="https://www.linkedin.com/in/chriswmoody"
@@ -207,14 +206,14 @@ export default function Landing() {
                 rel="noopener noreferrer"
                 className="btn-secondary"
               >
-                Connect on LinkedIn →
+                Connect on LinkedIn
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Footer ──────────────────────────────────────────────── */}
+      {/* Footer */}
       <footer style={{
         borderTop: '1px solid var(--color-border)',
         padding: '28px 0',
@@ -222,7 +221,7 @@ export default function Landing() {
       }}>
         <div className="container">
           <span style={{ fontSize: 13, color: 'var(--color-slate)', fontFamily: 'var(--font-body)' }}>
-            © 2026 Chris Moody · AI Delivery Lab
+            2026 Chris Moody · AI Delivery Lab
           </span>
         </div>
       </footer>
@@ -257,7 +256,6 @@ function FunctionCard({ fn }) {
         e.currentTarget.style.transform = 'translateY(0)'
       }}
     >
-      {/* Top row: icon + status */}
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
         <span style={{ fontSize: 24 }}>{fn.icon}</span>
         {isLive
@@ -266,13 +264,11 @@ function FunctionCard({ fn }) {
         }
       </div>
 
-      {/* Name + description */}
       <div>
         <h3 style={{ fontSize: 17, fontWeight: 500, marginBottom: 8, lineHeight: 1.3 }}>{fn.name}</h3>
         <p style={{ fontSize: 14, color: 'var(--color-slate)', lineHeight: 1.65, margin: 0 }}>{fn.description}</p>
       </div>
 
-      {/* Role tags */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 'auto' }}>
         {fn.roles.map(role => (
           <span key={role} style={{
@@ -290,30 +286,9 @@ function FunctionCard({ fn }) {
         ))}
       </div>
 
-      {/* CTA */}
       {isLive && (
         <div style={{ fontSize: 13, color: 'var(--color-mint)', fontFamily: 'var(--font-display)', fontWeight: 500 }}>
-          Open →
-        </div>
-      )}
-    </div>
-  )
-
-  return isLive && fn.slug
-    ? <Link to={fn.slug} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column' }}>{card}</Link>
-    : card
-}
-            fontWeight: 500,
-          }}>
-            {role}
-          </span>
-        ))}
-      </div>
-
-      {/* CTA */}
-      {isLive && (
-        <div style={{ fontSize: 13, color: 'var(--color-mint)', fontFamily: 'var(--font-display)', fontWeight: 500 }}>
-          Open →
+          Open
         </div>
       )}
     </div>

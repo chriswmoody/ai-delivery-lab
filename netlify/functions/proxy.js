@@ -19,7 +19,6 @@ export default async function handler(req, context) {
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
-    'Content-Type': 'application/json',
   }
 
   // ── Rate limiting ────────────────────────────────────────────
@@ -34,7 +33,7 @@ export default async function handler(req, context) {
     if (count >= DAILY_LIMIT) {
       return new Response(JSON.stringify({ error: 'daily_limit_reached' }), {
         status: 429,
-        headers: corsHeaders,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
@@ -52,7 +51,7 @@ export default async function handler(req, context) {
   } catch {
     return new Response(JSON.stringify({ error: 'Invalid JSON body' }), {
       status: 400,
-      headers: corsHeaders,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }
 
@@ -61,7 +60,7 @@ export default async function handler(req, context) {
   if (!system || !messages) {
     return new Response(JSON.stringify({ error: 'Missing required fields: system, messages' }), {
       status: 400,
-      headers: corsHeaders,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }
 
@@ -71,17 +70,13 @@ export default async function handler(req, context) {
     console.error('ANTHROPIC_API_KEY environment variable not set')
     return new Response(JSON.stringify({ error: 'Server configuration error' }), {
       status: 500,
-      headers: corsHeaders,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }
 
   try {
-    const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 55000)
-
     const anthropicResponse = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      signal: controller.signal,
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': apiKey,
@@ -90,32 +85,36 @@ export default async function handler(req, context) {
       body: JSON.stringify({
         model: model || 'claude-haiku-4-5-20251001',
         max_tokens: maxTokens || 800,
+        stream: true,
         system,
         messages,
       }),
     })
 
-    clearTimeout(timeout)
-
-    const data = await anthropicResponse.json()
-
     if (!anthropicResponse.ok) {
+      const data = await anthropicResponse.json()
       console.error('Anthropic API error:', data)
       return new Response(JSON.stringify({ error: 'AI service error', details: data }), {
         status: anthropicResponse.status,
-        headers: corsHeaders,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
-    return new Response(JSON.stringify(data), {
+    // Pipe the SSE stream straight back — Netlify sees active bytes, no 504
+    return new Response(anthropicResponse.body, {
       status: 200,
-      headers: corsHeaders,
+      headers: {
+        ...corsHeaders,
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'X-Accel-Buffering': 'no',
+      },
     })
   } catch (err) {
     console.error('Proxy error:', err)
     return new Response(JSON.stringify({ error: 'Internal server error' }), {
       status: 500,
-      headers: corsHeaders,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }
 }

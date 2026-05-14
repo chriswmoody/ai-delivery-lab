@@ -1,11 +1,11 @@
 /**
  * Calls Anthropic directly in local dev (VITE_ANTHROPIC_API_KEY set in .env.local),
- * or via the Netlify proxy function in production (key stays on the server).
+ * or via the Netlify streaming proxy in production (key stays on the server).
  */
 const LOCAL_KEY = import.meta.env.VITE_ANTHROPIC_API_KEY
 
 export async function callClaude({ system, messages, maxTokens = 1500, model = 'claude-haiku-4-5-20251001' }) {
-  // ── Local dev: call Anthropic directly ──────────────────────
+  // ── Local dev: call Anthropic directly (non-streaming) ──────
   if (LOCAL_KEY) {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -32,7 +32,7 @@ export async function callClaude({ system, messages, maxTokens = 1500, model = '
     return data?.content?.[0]?.text ?? ''
   }
 
-  // ── Production: go through Netlify proxy (key stays hidden) ─
+  // ── Production: stream through Netlify proxy ─────────────────
   const response = await fetch('/api/claude', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -48,6 +48,35 @@ export async function callClaude({ system, messages, maxTokens = 1500, model = '
     throw new Error(err.error || `Request failed (${response.status})`)
   }
 
-  const data = await response.json()
-  return data?.content?.[0]?.text ?? ''
+  // Parse SSE stream, collect all text_delta chunks
+  const reader = response.body.getReader()
+  const decoder = new TextDecoder()
+  let text = ''
+  let buffer = ''
+
+  while (true) {
+    const { done, value } = await reader.read()
+    if (done) break
+
+    buffer += decoder.decode(value, { stream: true })
+    const lines = buffer.split('\n')
+    buffer = lines.pop() // keep incomplete last line
+
+    for (const line of lines) {
+      if (!line.startsWith('data: ')) continue
+      const payload = line.slice(6).trim()
+      if (payload === '[DONE]') continue
+
+      try {
+        const evt = JSON.parse(payload)
+        if (evt.type === 'content_block_delta' && evt.delta?.type === 'text_delta') {
+          text += evt.delta.text
+        }
+      } catch {
+        // malformed line -- skip
+      }
+    }
+  }
+
+  return text
 }

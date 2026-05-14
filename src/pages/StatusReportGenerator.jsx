@@ -398,4 +398,19 @@ export default function StatusReportGenerator() {
             </div>
 
             <div>
-              <h2 style={{ fontSize: 16, fontWeight: 500, mar
+              <h2 style={{ fontSize: 16, fontWeight: 500, marginBottom: 20 }}>Your report</h2>
+              <StatusReportOutputPanel
+                output={output}
+                isLoading={isLoading}
+                error={error}
+                reportType={reportType}
+                projectName={projectName}
+                audience={audience}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </PageLayout>
+  )
+}

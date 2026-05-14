@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts ───────────────────────────────────────────── */
+/* Already loaded in index.html */
+
+/* ── CSS Variables (Aevo brand kit) ────────────────────────── */
+:root {
+  --color-mint:  #7dd4bd;
+  --color-peach: #e8a880;
+  --color-sky:   #7aafd4;
+  --color-rose:  #e8b8c4;
+  --color-cream: #faf9f7;
+  --color-sand:  #f0ede8;
+  --color-ink:   #0c0a09;
+  --color-slate: #4a4540;
+  --color-mist:  #c8c2bc;
+  --color-border: #e8e4df;
+
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body:    'Inter', sans-serif;
+
+  --nav-h: 64px;
+  --max-w: 1200px;
+}
+
+/* ── Base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typography ─────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+p { max-width: 68ch; }
+
+/* ── Layout ──────────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.sect { padding: 80px 0; }
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 52px;
+  padding: 12px 28px;
+  background: var(--color-mint);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.btn-primary:hover  { opacity: 0.88; }
+.btn-primary:active { transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--color-slate);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-secondary:hover { border-color: var(--color-mist); color: var(--color-ink); }
+
+/* ── Cards ───────────────────────────────────────────────────── */
+.card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 28px 32px;
+}
+
+.card-featured {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 32px 36px;
+}
+
+/* ── Badges ──────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 6px 16px;
+  background: rgba(125, 212, 189, 0.15);
+  border: 1px solid rgba(125, 212, 189, 0.4);
+  color: #2d6b5e;
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.badge-sky {
+  background: rgba(122, 175, 212, 0.15);
+  border-color: rgba(122, 175, 212, 0.4);
+  color: #2a5270;
+}
+
+.badge-peach {
+  background: rgba(232, 168, 128, 0.15);
+  border-color: rgba(232, 168, 128, 0.4);
+  color: #7a4a28;
+}
+
+/* ── Form elements ───────────────────────────────────────────── */
+.form-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-ink);
+  margin-bottom: 6px;
+  letter-spacing: 0.2px;
+}
+
+.form-hint {
+  font-size: 12px;
+  color: var(--color-slate);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-ink);
+  transition: border-color 0.15s ease;
+  outline: none;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: var(--color-mint);
+}
+
+.form-textarea {
+  resize: vertical;
+  line-height: 1.6;
+  min-height: 120px;
+}
+
+/* ── Output panel ────────────────────────────────────────────── */
+.output-section {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.output-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--color-sand);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.output-section-title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--color-slate);
+}
+
+.output-section-body {
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-ink);
+  white-space: pre-wrap;
+}
+
+/* ── Loading states ──────────────────────────────────────────── */
+.loading-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-mint);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.loading-dot:nth-child(2) { animation-delay: 0.2s; }
+.loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes pulse {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40%           { opacity: 1;   transform: scale(1); }
+}
+
+/* ── Divider ─────────────────────────────────────────────────── */
+.divider { border: none; border-top: 1px solid var(--color-border); }
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .sect      { padding: 48px 0; }
+  .container { padding: 0 24px; }
+  .card      { padding: 20px 24px; }
+}
+
+@media (max-width: 640px) {
+  .btn-primary { height: 44px; padding: 10px 22px; font-size: 14px; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 20px; }
+}

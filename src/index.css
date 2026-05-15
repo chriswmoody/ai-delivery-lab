@@ -276,6 +276,9 @@ p { max-width: 68ch; }
   .page-hero { padding: 16px 0 14px !important; }
   .page-hero h1 { font-size: 22px !important; margin-bottom: 6px !important; }
   .page-hero p  { font-size: 13px !important; }
+
+  /* Hide role badges on catalog cards to save space */
+  .card-roles { display: none !important; }
 }
 
 @media (max-width: 640px) {

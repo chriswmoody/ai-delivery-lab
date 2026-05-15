@@ -269,7 +269,7 @@ function FunctionCard({ fn }) {
         <p style={{ fontSize: 14, color: 'var(--color-slate)', lineHeight: 1.65, margin: 0 }}>{fn.description}</p>
       </div>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 'auto' }}>
+      <div className="card-roles" style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 'auto' }}>
         {fn.roles.map(role => (
           <span key={role} style={{
             fontSize: 11,

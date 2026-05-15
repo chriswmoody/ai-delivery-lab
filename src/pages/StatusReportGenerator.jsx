@@ -303,12 +303,7 @@ export default function StatusReportGenerator() {
     >
       <section className="sect">
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.5fr)',
-            gap: 40,
-            alignItems: 'start',
-          }}>
+          <div className="tool-grid">
             <div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
                 <h2 style={{ fontSize: 16, fontWeight: 500 }}>Your inputs</h2>
@@ -378,7 +373,7 @@ export default function StatusReportGenerator() {
                   </p>
                   <textarea
                     className="form-textarea"
-                    style={{ minHeight: 560 }}
+                    style={{ minHeight: 'clamp(90px, 30vw, 560px)' }}
                     placeholder="What happened this week? What is blocked? What decisions were made? What is coming up? What do you need from leadership? Paste it all here — no need to format or organize it first."
                     value={statusDump}
                     onChange={e => setStatusDump(e.target.value)}

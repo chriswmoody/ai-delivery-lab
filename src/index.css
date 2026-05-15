@@ -246,11 +246,36 @@ p { max-width: 68ch; }
 /* ── Divider ─────────────────────────────────────────────────── */
 .divider { border: none; border-top: 1px solid var(--color-border); }
 
+/* ── Tool page two-column grid ───────────────────────────────── */
+.tool-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 40px;
+  align-items: start;
+}
+
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .sect      { padding: 48px 0; }
-  .container { padding: 0 24px; }
-  .card      { padding: 20px 24px; }
+  .sect      { padding: 32px 0; }
+  .container { padding: 0 20px; }
+  .card      { padding: 16px 20px; }
+
+  /* Tool pages: stack to single column */
+  .tool-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Shrink textareas on mobile */
+  .form-textarea { min-height: 90px !important; }
+
+  /* Hide helper hints on mobile to save space */
+  .form-hint { display: none; }
+
+  /* Tighten page hero */
+  .page-hero { padding: 16px 0 14px !important; }
+  .page-hero h1 { font-size: 22px !important; margin-bottom: 6px !important; }
+  .page-hero p  { font-size: 13px !important; }
 }
 
 @media (max-width: 640px) {
@@ -258,5 +283,5 @@ p { max-width: 68ch; }
 }
 
 @media (max-width: 480px) {
-  .container { padding: 0 20px; }
+  .container { padding: 0 16px; }
 }

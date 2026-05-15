@@ -30,7 +30,7 @@ export default function PageLayout({ children, title, subtitle, roles }) {
       </nav>
 
       {/* Page hero */}
-      <section style={{
+      <section className="page-hero" style={{
         background: '#ffffff',
         borderBottom: '1px solid var(--color-border)',
         padding: '36px 0 32px',

@@ -139,12 +139,7 @@ export default function ValueAlignmentAuditor() {
     >
       <section className="sect">
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.5fr)',
-            gap: 40,
-            alignItems: 'start',
-          }}>
+          <div className="tool-grid">
 
             {/* ── Left: Inputs ── */}
             <div>
@@ -181,7 +176,7 @@ export default function ValueAlignmentAuditor() {
                   </p>
                   <textarea
                     className="form-textarea"
-                    style={{ minHeight: 320, fontFamily: 'monospace', fontSize: 13 }}
+                    style={{ minHeight: 'clamp(90px, 25vw, 320px)', fontFamily: 'monospace', fontSize: 13 }}
                     placeholder={`EPIC-01: Reporting module core data model (8pts)\nSTORY-10: Redesign onboarding flow for new signups (5pts)\nSTORY-11: Refactor legacy auth middleware (8pts)`}
                     value={backlog}
                     onChange={e => setBacklog(e.target.value)}

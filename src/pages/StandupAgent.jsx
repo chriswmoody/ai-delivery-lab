@@ -172,12 +172,7 @@ export default function StandupAgent() {
     >
       <section className="sect">
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.5fr)',
-            gap: 40,
-            alignItems: 'start',
-          }}>
+          <div className="tool-grid">
 
             {/* ── Left: Inputs ── */}
             <div>
@@ -198,7 +193,7 @@ export default function StandupAgent() {
                   </p>
                   <textarea
                     className="form-textarea"
-                    style={{ minHeight: 200, fontFamily: 'monospace', fontSize: 13 }}
+                    style={{ minHeight: 'clamp(90px, 25vw, 200px)', fontFamily: 'monospace', fontSize: 13 }}
                     placeholder={`TICK-101: Build payment form (8pts) — In Progress, no PR yet\nTICK-102: API integration (5pts) — Done\nTICK-103: Error handling (3pts) — Not started, blocked on TICK-101`}
                     value={sprintBoard}
                     onChange={e => setSprintBoard(e.target.value)}

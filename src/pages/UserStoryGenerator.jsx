@@ -83,12 +83,7 @@ export default function UserStoryGenerator() {
     >
       <section className="sect">
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
-            gap: 32,
-            alignItems: 'start',
-          }}>
+          <div className="tool-grid">
 
             {/* ── Left: Input form ── */}
             <div>

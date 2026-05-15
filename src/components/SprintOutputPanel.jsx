@@ -110,7 +110,7 @@ function DashboardStrip({ dash }) {
   return (
     <div style={{
       display: 'grid',
-      gridTemplateColumns: 'auto 1fr 1fr 1fr',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
       gap: 0,
       border: '1px solid var(--color-border)',
       borderRadius: 12,
@@ -127,7 +127,6 @@ function DashboardStrip({ dash }) {
         flexDirection: 'column',
         justifyContent: 'center',
         gap: 2,
-        minWidth: 110,
       }}>
         <span style={{ fontSize: 10, fontFamily: 'var(--font-display)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.8px', color: hc.color, opacity: 0.75 }}>Sprint Health</span>
         <span style={{ fontSize: 15, fontFamily: 'var(--font-display)', fontWeight: 600, color: hc.color }}>{hc.label}</span>

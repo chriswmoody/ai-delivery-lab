@@ -234,12 +234,13 @@ function DashboardStrip({ dash }) {
   return (
     <div style={{
       display: 'grid',
-      gridTemplateColumns: 'auto 1fr 1fr 1fr',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
       gap: 0,
       border: '1px solid var(--color-border)',
       borderRadius: 12,
       marginBottom: 16,
       background: '#fff',
+      overflow: 'hidden',
       position: 'relative',
     }}>
       {/* Overall alignment */}
@@ -248,7 +249,6 @@ function DashboardStrip({ dash }) {
         background: hc.bg,
         borderRight: `1px solid ${hc.border}`,
         display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 2,
-        minWidth: 110,
       }}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <span style={{ fontSize: 10, fontFamily: 'var(--font-display)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.8px', color: hc.color, opacity: 0.75 }}>Alignment</span>

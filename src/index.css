@@ -279,6 +279,10 @@ p { max-width: 68ch; }
 
   /* Hide role badges on catalog cards to save space */
   .card-roles { display: none !important; }
+
+  /* Prevent any output content from blowing out horizontal scroll */
+  .tool-grid > * { min-width: 0; overflow-x: hidden; }
+  pre, code { white-space: pre-wrap; word-break: break-word; }
 }
 
 @media (max-width: 640px) {
